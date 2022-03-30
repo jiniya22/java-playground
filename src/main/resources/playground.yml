@@ -1,0 +1,13 @@
+playground:
+  relaxed-binding:
+    userId: demo123
+    PASSWORD: 1234
+    api-key: vnhfM8vJjwzJEvGCqvNue9h8w77fhxPS
+    secret_key: qEX3PSHHgm2mvaHur3RG2VD2eYbKc75j
+    sites:
+      - https://java.applebox.xyz
+      - http://localhost:8080
+    sites2: https://java.applebox.xyz, http://localhost:8080
+    option:
+      name: test
+      flag: false

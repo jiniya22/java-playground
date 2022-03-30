@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: java-playground
+  profiles:
+    active: local
+  config:
+    import:
+    - classpath:/playground.yml
