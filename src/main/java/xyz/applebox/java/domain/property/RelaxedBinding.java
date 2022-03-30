@@ -1,6 +1,6 @@
 package xyz.applebox.java.domain.property;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 import java.util.LinkedList;
 import java.util.List;
 
-@Data
+@ToString
+@Setter
 @Component
 @ConfigurationProperties(prefix = "playground.relaxed-binding")
 public class RelaxedBinding {
@@ -17,9 +18,9 @@ public class RelaxedBinding {
     private String password;
     private String apiKey;
     private String secretKey;
-    private final List<String> sites = new LinkedList<>();
-    private final List<String> sites2 = new LinkedList<>();
-    private Option option;
+    @Getter private final List<String> sites = new LinkedList<>();
+    @Getter private final List<String> sites2 = new LinkedList<>();
+    @Getter private final Option option = new Option();
 
     @ToString
     @Setter
