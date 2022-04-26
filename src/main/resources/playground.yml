@@ -11,4 +11,8 @@ playground:
     option:
       name: test
       flag: false
+  gson-test:
+    test1: "<html><head></head><body>1234</body></html>"
+    test2: "2022-02-01 09:20:00"
+    test3: null
 
