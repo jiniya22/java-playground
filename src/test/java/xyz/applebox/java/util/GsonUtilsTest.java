@@ -1,7 +1,10 @@
 package xyz.applebox.java.util;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import xyz.applebox.java.domain.property.GsonTest;
+import xyz.applebox.java.domain.property.ValueProperties;
 import xyz.applebox.java.domain.value.TestValue;
 
 import java.time.LocalDate;
@@ -11,6 +14,17 @@ import java.util.Date;
 
 @SpringBootTest
 class GsonUtilsTest {
+    @Autowired
+    private GsonTest gsonTest;
+
+    @Test
+    void gsonBasicTest() {
+        String htmlEscapingTest = gsonTest.getHtmlEscapingTest();
+        System.out.println(htmlEscapingTest);
+
+        String htmlTest2 = GsonUtils.toJson(gsonTest);
+        System.out.println(htmlTest2);
+    }
 
     @Test
     void gsonTest() {

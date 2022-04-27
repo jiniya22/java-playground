@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "playground.gson-test")
 public class GsonTest {
-    private String test1;
-    private String test2;
-    private String test3;
+    private String htmlEscapingTest;
+    private String nullTest;
 }
