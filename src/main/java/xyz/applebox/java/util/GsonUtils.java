@@ -24,7 +24,7 @@ public class GsonUtils {
             .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter().nullSafe())
             .registerTypeAdapter(LocalDate.class, new LocalDateAdapter().nullSafe())
             .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter().nullSafe())
-            .serializeNulls()
+//            .serializeNulls()
             .create();
 
     public static String toJson(Object o) {

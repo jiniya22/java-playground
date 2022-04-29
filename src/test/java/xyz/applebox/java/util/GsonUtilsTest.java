@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import xyz.applebox.java.domain.property.GsonTest;
-import xyz.applebox.java.domain.property.ValueProperties;
 import xyz.applebox.java.domain.value.TestValue;
 
 import java.time.LocalDate;
@@ -34,7 +33,7 @@ class GsonUtilsTest {
         System.out.println(sTestValue1);
         System.out.println(GsonUtils.fromJson(sTestValue1, TestValue.class));
 
-        System.out.println("\n");
+        System.out.println();
 
         TestValue testValue2 = TestValue.builder().name("coco")
                 .localDate(LocalDate.now()).localTime(LocalTime.now()).build();

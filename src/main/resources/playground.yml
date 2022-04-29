@@ -13,5 +13,5 @@ playground:
       flag: false
   gson-test:
     html-escaping-test: "<html><head></head><body>1234</body></html>"
-    null-test: null
+    test: test
 
