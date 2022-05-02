@@ -1,25 +1,15 @@
 package xyz.applebox.java.example.datetime;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import xyz.applebox.java.util.DateUtils;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
-@SpringBootTest
-class LocalDateTimeTest {
-    public static final SimpleDateFormat SDF_DATETIME = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+public class LocalDateTimeExample {
 
-    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    public static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm:ss");
-    public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-    @Test
-    void localDateTimeToTimestamp() {
+    public static void localDateTimeToTimestamp() {
         LocalDateTime localDateTime = LocalDateTime.now();
 
         Timestamp timestamp = Timestamp.valueOf(localDateTime);
@@ -27,8 +17,7 @@ class LocalDateTimeTest {
         System.out.println(timestamp);
     }
 
-    @Test
-    void localDateTimeToLocalDate() {
+    public static void localDateTimeToLocalDate() {
         LocalDateTime localDateTime = LocalDateTime.now();
 
         LocalDate localDate1 = LocalDate.now();
@@ -38,8 +27,7 @@ class LocalDateTimeTest {
         System.out.println(localDate2);
     }
 
-    @Test
-    void localDateTimeToLocalTime() {
+    public static void localDateTimeToLocalTime() {
         LocalDateTime localDateTime = LocalDateTime.now();
 
         LocalTime localTime1 = LocalTime.now();
@@ -49,8 +37,7 @@ class LocalDateTimeTest {
         System.out.println(localTime2);
     }
 
-    @Test
-    void getField() {
+    public static void getField() {
         LocalDateTime localDateTime = LocalDateTime.now();
         int year = localDateTime.getYear();
         int month = localDateTime.getMonthValue();
@@ -59,7 +46,7 @@ class LocalDateTimeTest {
         int minute = localDateTime.getMinute();
         int second = localDateTime.getSecond();
 
-        System.out.println(DATETIME_FORMAT.format(localDateTime));
+        System.out.println(DateUtils.DATETIME_FORMAT.format(localDateTime));
         System.out.println(String.format("%d, %d, %d, %d, %d, %d", year, month, dayOfMonth, hour, minute, second));
         System.out.println();
     }
