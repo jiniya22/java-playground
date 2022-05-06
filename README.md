@@ -8,4 +8,4 @@
 2. [[Spring] yml 파일의 값을 상수로 초기화 하기](https://blog.jiniworld.me/150)
 3. [[Java 9] Immutable Collection 생성하기](https://blog.jiniworld.me/159)
 4. [[Java 16] Pattern Matching for instanceof](https://blog.jiniworld.me/160)
-5. [[Java 14] Switch 문에서 arrow function 이용하기](https://blog.jiniworld.me/161)
+5. [[Java 14] Switch 문에서 arrow operator 이용하기](https://blog.jiniworld.me/161)
