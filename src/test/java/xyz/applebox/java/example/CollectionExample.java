@@ -20,14 +20,28 @@ class CollectionExample {
         List<String> immutableList = List.of("apple", "banana", "melon", "watermelon");
         System.out.println(immutableList);
 
+        List<String> list = Arrays.asList("red", "green", "red");
+        List<String> immutableList2 = List.copyOf(list);
+        System.out.println(immutableList2);
+
         Set<Integer> immutableSet = Set.of(8, 10, 88);
         System.out.println(immutableSet);
+
+        Set<String> immutableSet2 = Set.copyOf(list);
+        System.out.println(immutableSet2);
 
         Map<String, Integer> immutableMap = Map.of("coco", 28, "lily", 34);
         System.out.println(immutableMap);
 
-        Map<String, Integer> immutableMap2 = Map.ofEntries(Map.entry("coco", 28), Map.entry("lily", 34));
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "red");
+        map.put(2, "blue");
+//        map.put(3, null);     // Map.copyOf 에 넣을 경우 에러 발생
+        Map<Integer, String> immutableMap2 = Map.copyOf(map);
         System.out.println(immutableMap2);
+
+        Map<String, Integer> immutableMap3 = Map.ofEntries(Map.entry("coco", 28), Map.entry("lily", 34));
+        System.out.println(immutableMap3);
     }
 
     /**
