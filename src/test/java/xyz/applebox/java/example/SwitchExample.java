@@ -30,6 +30,28 @@ class SwitchExample {
         });
     }
 
+    @Test
+    void previous(){
+        List<Animal> animals = Arrays.asList(Animal.CAT, Animal.CAT, Animal.LION, Animal.SNAKE, Animal.DUCK);
+
+        animals.stream().forEach(animal -> {
+            int legs;
+            switch (animal) {
+                case CAT: case LION:
+                    legs = 4;
+                    break;
+                case DUCK:
+                    System.out.println("오리는 꽥꽥");
+                    legs = 2;
+                    break;
+                default:
+                    legs = 0;
+                    break;
+            };
+            System.out.println(String.format("%s의 다리개수는 %d", animal.name(), legs));
+        });
+    }
+
     enum Animal {
         CAT, DUCK, LION, SNAKE
     }
