@@ -6,4 +6,5 @@
 
 1. [[Spring Boot Core] Spring Boot Relaxed Binding using yaml](https://blog.jiniworld.me/146)
 2. [[Spring] yml 파일의 값을 상수로 초기화 하기](https://blog.jiniworld.me/150)
-3. [[Java] Gson을 이용한 Json Serialization & Deserialization](https://blog.jiniworld.me/158)
+3. [[Java 9] Immutable Collection 생성하기](https://blog.jiniworld.me/159)
+3. [[Java 16] Pattern Matching for instanceof](https://blog.jiniworld.me/160)

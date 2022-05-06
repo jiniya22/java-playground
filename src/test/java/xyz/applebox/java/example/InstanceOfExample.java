@@ -16,12 +16,40 @@ public class InstanceOfExample {
      * instanceof 패턴 매칭을 지원하여 캐스팅이 필요없어졌습니다.
      */
     @Test
-    void instanceofPatternMatchTest() {
+    void jep394() {
         List<Figure> figures = Arrays.asList(new Square(), new Circle(), new Square("네모"));
         for(Figure figure : figures) {
             if(figure instanceof Square square) {
                 System.out.println(String.format("이름: %s, line 수: %d", square.getName(), square.getLine()));
             } else if(figure instanceof Circle circle) {
+                System.out.println(String.format("이름: %s", circle.getName()));
+            }
+        }
+    }
+
+    @Test
+    void jep394LogicalOperatorTest() {
+        List<Number> numbers = List.of(30, 10.2642, 55, 2.73593, 33);
+
+        for(Number number : numbers) {
+//            if(number instanceof Integer i || i < 5) { }  // or 연산과 함께 사용할 수 없습니다.
+            if(number instanceof Integer i && i % 10 == 0) {
+                System.out.println(String.format("정수> %d", i));
+            } else if(number instanceof Double d && d.floatValue() > 10) {
+                System.out.println(String.format("실수> %f (약 %.1f)", d, d));
+            }
+        }
+    }
+
+    @Test
+    void previousVersion() {
+        List<Figure> figures = Arrays.asList(new Square(), new Circle(), new Square("네모"));
+        for(Figure figure : figures) {
+            if(figure instanceof Square) {
+                Square square = (Square) figure;
+                System.out.println(String.format("이름: %s, line 수: %d", square.getName(), square.getLine()));
+            } else if(figure instanceof Circle) {
+                Circle circle = (Circle) figure;
                 System.out.println(String.format("이름: %s", circle.getName()));
             }
         }
