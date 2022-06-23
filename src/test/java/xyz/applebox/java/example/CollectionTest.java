@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @SpringBootTest
-class CollectionExample {
+class CollectionTest {
 
     /**
      * JEP 269: Convenience Factory Methods for Collections

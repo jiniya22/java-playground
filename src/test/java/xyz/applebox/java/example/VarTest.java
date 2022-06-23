@@ -8,7 +8,7 @@ import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 
 @SpringBootTest
-class varExample {
+class VarTest {
 
 
     /**

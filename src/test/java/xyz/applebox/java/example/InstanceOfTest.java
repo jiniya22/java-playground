@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
-public class InstanceOfExample {
+public class InstanceOfTest {
 
     /**
      * JEP 394: Pattern Matching for instanceof
@@ -20,9 +20,9 @@ public class InstanceOfExample {
         List<Figure> figures = Arrays.asList(new Square(), new Circle(), new Square("네모"));
         for(Figure figure : figures) {
             if(figure instanceof Square square) {
-                System.out.println(String.format("이름: %s, line 수: %d", square.getName(), square.getLine()));
+                System.out.printf("이름: %s, line 수: %d%n", square.getName(), square.getLine());
             } else if(figure instanceof Circle circle) {
-                System.out.println(String.format("이름: %s", circle.getName()));
+                System.out.printf("이름: %s%n", circle.getName());
             }
         }
     }
@@ -34,9 +34,9 @@ public class InstanceOfExample {
         for(Number number : numbers) {
 //            if(number instanceof Integer i || i < 5) { }  // or 연산과 함께 사용할 수 없습니다.
             if(number instanceof Integer i && i % 10 == 0) {
-                System.out.println(String.format("정수> %d", i));
+                System.out.printf("정수> %d%n", i);
             } else if(number instanceof Double d && d.floatValue() > 10) {
-                System.out.println(String.format("실수> %f (약 %.1f)", d, d));
+                System.out.printf("실수> %f (약 %.1f)%n", d, d);
             }
         }
     }
@@ -56,20 +56,20 @@ public class InstanceOfExample {
     }
 
     @Getter
-    abstract class Figure {
+    abstract static class Figure {
         protected String name;
     }
 
     @Getter
-    class Circle extends Figure {
+    static class Circle extends Figure {
         public Circle() {
             this.name = "원";
         }
     }
 
     @Getter
-    class Square extends Figure {
-        private int line;
+    static class Square extends Figure {
+        private final int line;
 
         public Square() {
             this.name = "사각형";

@@ -1,13 +1,11 @@
 package xyz.applebox.java.example;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.List;
 
-@SpringBootTest
-class SwitchExample {
+class SwitchTest {
 
     /**
      * JEP 361: Switch Expressions
@@ -17,7 +15,7 @@ class SwitchExample {
     @Test
     void jep361(){
         List<Animal> animals = Arrays.asList(Animal.CAT, Animal.CAT, Animal.LION, Animal.SNAKE, Animal.DUCK);
-        animals.stream().forEach(animal -> {
+        animals.forEach(animal -> {
             int legs = switch (animal) {
                 case CAT, LION -> 4;
                 case DUCK -> {
@@ -26,7 +24,7 @@ class SwitchExample {
                 }
                 default -> 0;
             };
-            System.out.println(String.format("%s의 다리개수는 %d", animal.name(), legs));
+            System.out.printf("%s의 다리개수는 %d%n", animal.name(), legs);
         });
     }
 
@@ -34,7 +32,7 @@ class SwitchExample {
     void previous(){
         List<Animal> animals = Arrays.asList(Animal.CAT, Animal.CAT, Animal.LION, Animal.SNAKE, Animal.DUCK);
 
-        animals.stream().forEach(animal -> {
+        animals.forEach(animal -> {
             int legs;
             switch (animal) {
                 case CAT: case LION:
@@ -47,8 +45,8 @@ class SwitchExample {
                 default:
                     legs = 0;
                     break;
-            };
-            System.out.println(String.format("%s의 다리개수는 %d", animal.name(), legs));
+            }
+            System.out.printf("%s의 다리개수는 %d%n", animal.name(), legs);
         });
     }
 
