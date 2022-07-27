@@ -1,75 +1,76 @@
 package xyz.applebox.java.encrypt;
 
-import javax.crypto.Cipher;
+import org.springframework.security.crypto.codec.Utf8;
+
 import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
-import javax.crypto.spec.SecretKeySpec;
+import java.security.GeneralSecurityException;
+import java.security.MessageDigest;
 import java.security.SecureRandom;
-import java.security.spec.AlgorithmParameterSpec;
 import java.util.Base64;
 
 public class Pbkdf2Example {
-
     private static final SecureRandom random = new SecureRandom();
-    private static final int ITERATION_COUNT = 1000;
-    private static final int KEY_LENGTH = 256;
+    private static final byte[] SECRET_KEY = Utf8.encode("mySecretKey1123!");
+    private static final int ITERATION_COUNT = 65536;
+    private static final int HASH_WIDTH = 256;
+    private static final int SALT_LENGTH = 16;
 
     public static void main(String[] args) {
-        char[] password = "password123!".toCharArray();
-        byte[] salt = createSalt();
-        byte[] iv = createIv();
+        String rawPassword = "pass0rd2213@";
 
-        SecretKeySpec secretKeySpec = getSecretKeySpec(password, salt);
-        AlgorithmParameterSpec paramSpec = new IvParameterSpec(iv);
+        String encString = encode(rawPassword);
+        String encString2 = encode(rawPassword);
 
-        String encString = encrypt("jiniworld!", secretKeySpec, paramSpec);
-        String decString = decrypt(encString, secretKeySpec, paramSpec);
         System.out.println(encString);
-        System.out.println(decString);
+        System.out.println(encString2);
+        System.out.println(matches(rawPassword, encString));
+        System.out.println(matches(rawPassword, encString2));
+        System.out.println(matches(rawPassword, "MHqGaSBU+LCZnChCPXXX6QdnmpVY85lJyVPylP8ft70XtMamxACyOCPRDrlDU2vY"));
     }
 
-    static String encrypt(String message, SecretKeySpec secretKeySpec, AlgorithmParameterSpec paramSpec) {
-        try {
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, paramSpec);
-            return Base64.getEncoder().encodeToString(cipher.doFinal(message.getBytes()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static String encode(CharSequence rawPassword) {
+        byte[] salt = createSalt();
+        byte[] encoded = encode(rawPassword, salt);
+        return Base64.getEncoder().encodeToString(encoded);
     }
 
-    static String decrypt(String message, SecretKeySpec secretKeySpec, AlgorithmParameterSpec paramSpec) {
+    private static byte[] encode(CharSequence rawPassword, byte[] salt) {
         try {
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, paramSpec);
-            return new String(cipher.doFinal(Base64.getDecoder().decode(message)));
-        } catch (Exception e) {
-            e.printStackTrace();
+            PBEKeySpec spec = new PBEKeySpec(rawPassword.toString().toCharArray(),
+                    concatenate(salt, SECRET_KEY), ITERATION_COUNT, HASH_WIDTH);
+            SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+            return concatenate(salt, skf.generateSecret(spec).getEncoded());
+        } catch (GeneralSecurityException ex) {
+            throw new IllegalStateException("Could not create hash", ex);
         }
-        return null;
     }
 
-    static SecretKeySpec getSecretKeySpec(char[] password, byte[] salt) {
-        try {
-            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-            return new SecretKeySpec(keyFactory.generateSecret(new PBEKeySpec(password, salt, ITERATION_COUNT, KEY_LENGTH)).getEncoded(), "AES");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public static boolean matches(CharSequence rawPassword, String encodedPassword) {
+        byte[] digested = Base64.getDecoder().decode(encodedPassword);
+        byte[] salt = new byte[SALT_LENGTH];
+        System.arraycopy(digested, 0, salt, 0, SALT_LENGTH);    // deep copy
+        return MessageDigest.isEqual(digested, encode(rawPassword, salt));
     }
 
     static byte[] createSalt() {
-        byte[] salt = new byte[32];
+        byte[] salt = new byte[SALT_LENGTH];
         random.nextBytes(salt);
         return salt;
     }
 
-    static byte[] createIv() {
-        byte[] iv = new byte[16];
-        random.nextBytes(iv);
-        return iv;
+    public static byte[] concatenate(byte[]... arrays) {
+        int length = 0;
+        for (byte[] array : arrays) {
+            length += array.length;
+        }
+        byte[] newArray = new byte[length];
+        int destPos = 0;
+        for (byte[] array : arrays) {
+            System.arraycopy(array, 0, newArray, destPos, array.length);
+            destPos += array.length;
+        }
+        return newArray;
     }
 
 }
