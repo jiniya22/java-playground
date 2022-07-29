@@ -12,7 +12,7 @@ public class Pbkdf2PasswordEncoderExample {
     static {
         pbkdf2PasswordEncoder = new Pbkdf2PasswordEncoder(SECRET_KEY, SALT_LENGTH, ITERATION_COUNT, HASH_WIDTH);
         pbkdf2PasswordEncoder.setAlgorithm(Pbkdf2PasswordEncoder.SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
-//        pbkdf2PasswordEncoder.setEncodeHashAsBase64(true);
+        pbkdf2PasswordEncoder.setEncodeHashAsBase64(true);
     }
 
     public static void main(String[] args) {

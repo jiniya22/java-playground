@@ -1,6 +1,5 @@
 package xyz.applebox.java.encrypt;
 
-import org.springframework.security.crypto.codec.Hex;
 import org.springframework.security.crypto.codec.Utf8;
 
 import javax.crypto.SecretKeyFactory;
@@ -8,6 +7,7 @@ import javax.crypto.spec.PBEKeySpec;
 import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
+import java.util.Base64;
 
 public class Pbkdf2Example {
     private static final SecureRandom random = new SecureRandom();
@@ -26,13 +26,14 @@ public class Pbkdf2Example {
         System.out.println(encString2);
         System.out.println(matches(rawPassword, encString));
         System.out.println(matches(rawPassword, encString2));
-        System.out.println(matches(rawPassword, "31625a3c9cc0a68ed1a13dd71581d3ea3683bdf8df53282307a088c63808c95d2d26f7710180ff6597d440416df6cbd0"));
+        System.out.println(matches(rawPassword, "PwFaWOHBeetzCFKy+U8fZg4cxCTZlHNu6rngeYhYl9+QAXHClbP5Q+dC2X+9fJOQ"));
     }
 
     public static String encode(CharSequence rawPassword) {
         byte[] salt = createSalt();
         byte[] encoded = encode(rawPassword, salt);
-        return String.valueOf(Hex.encode(encoded));
+        return Base64.getEncoder().encodeToString(encoded);
+//        return String.valueOf(Hex.encode(encoded));
     }
 
     private static byte[] encode(CharSequence rawPassword, byte[] salt) {
@@ -47,7 +48,8 @@ public class Pbkdf2Example {
     }
 
     public static boolean matches(CharSequence rawPassword, String encodedPassword) {
-        byte[] digested = Hex.decode(encodedPassword);
+        byte[] digested = Base64.getDecoder().decode(encodedPassword);
+//        byte[] digested = Hex.decode(encodedPassword);
         byte[] salt = new byte[SALT_LENGTH];
         System.arraycopy(digested, 0, salt, 0, SALT_LENGTH);    // deep copy
         return MessageDigest.isEqual(digested, encode(rawPassword, salt));
