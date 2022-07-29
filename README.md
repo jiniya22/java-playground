@@ -9,3 +9,6 @@
 3. [[Java 9] Immutable Collection 생성하기](https://blog.jiniworld.me/159)
 4. [[Java 16] Pattern Matching for instanceof](https://blog.jiniworld.me/160)
 5. [[Java 14] Switch 문에서 arrow operator 이용하기](https://blog.jiniworld.me/161)
+6. [[JCA] Cipher 클래스를 이용한 AES 대칭키 암복호화](https://blog.jiniworld.me/171)
+7. [[JCA] Hash 함수의 개요와 PBKDF2를 이용한 단방향 해시 알고리즘 구현](https://blog.jiniworld.me/172)
+8. [[JCA] HMAC을 이용한 API Request 변조 검증](https://blog.jiniworld.me/173)
