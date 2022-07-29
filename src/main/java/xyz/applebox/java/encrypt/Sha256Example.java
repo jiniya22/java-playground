@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
-public class Sha256Encrypt {
+public class Sha256Example {
 
     public static void main(String[] args) {
         String data = "hello jiniworld", data2 = "hello jiniworld!";
