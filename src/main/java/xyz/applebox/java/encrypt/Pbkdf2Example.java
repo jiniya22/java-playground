@@ -1,7 +1,5 @@
 package xyz.applebox.java.encrypt;
 
-import org.springframework.security.crypto.codec.Utf8;
-
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.security.GeneralSecurityException;
@@ -11,7 +9,7 @@ import java.util.Base64;
 
 public class Pbkdf2Example {
     private static final SecureRandom random = new SecureRandom();
-    private static final byte[] SECRET_KEY = Utf8.encode("mySecretKey1123!");
+    private static final byte[] SECRET_KEY = "mySecretKey1123!".getBytes();
     private static final int ITERATION_COUNT = 65536;
     private static final int HASH_WIDTH = 256;
     private static final int SALT_LENGTH = 16;

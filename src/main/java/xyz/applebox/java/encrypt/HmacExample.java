@@ -19,7 +19,7 @@ public class HmacExample {
         System.out.println(encrypt(message2));
     }
 
-    static String encrypt(String message) {
+    public static String encrypt(String message) {
         try {
             Mac mac = Mac.getInstance(ALGORITHM);
             mac.init(SECRET_KEY_SPEC);
