@@ -1,4 +1,4 @@
-package xyz.applebox.java.controller;
+package xyz.applebox.java;
 
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.web.bind.annotation.*;
