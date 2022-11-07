@@ -13,9 +13,7 @@ import org.springframework.stereotype.Component;
 public class BasicAspect {
 
     @Pointcut("execution(* xyz.applebox.java.controller..*.*(..))")
-    private void pointcut1() {
-
-    }
+    private void pointcut1() { }
 
     @Before("pointcut1()")
     public void before(JoinPoint joinPoint) {
