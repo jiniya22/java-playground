@@ -1,7 +1,8 @@
 package xyz.applebox.java.model;
 
+import xyz.applebox.java.annotation.YearMonth;
+
 import javax.validation.constraints.*;
-import java.time.format.DateTimeFormatter;
 
 public record User(
         @NotBlank
@@ -16,16 +17,7 @@ public record User(
         @Pattern(regexp = "^01[01679]-\\d{3,4}-\\d{4}$")
         String phone,
 
+        @YearMonth
         String month
 ) {
-
-        @AssertTrue(message = "yyyyMM 형식에 맞지 않습니다")
-        public boolean isMonthValidation() {
-                try {
-                        java.time.YearMonth.parse(this.month, DateTimeFormatter.ofPattern("yyyyMM"));
-                } catch (Exception e) {
-                        return false;
-                }
-                return true;
-        }
 }

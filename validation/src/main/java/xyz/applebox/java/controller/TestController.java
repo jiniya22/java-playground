@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import xyz.applebox.java.model.BaseResponse;
+import xyz.applebox.java.model.Member;
 import xyz.applebox.java.model.User;
 
 import javax.validation.Valid;
@@ -24,13 +25,25 @@ public class TestController {
     @PostMapping("/user")
     public ResponseEntity<BaseResponse<?>> userCheck(@RequestBody @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            List<String> result =  bindingResult.getFieldErrors().stream()
-                    .map(fieldError -> String.format("%s 오류. %s", fieldError.getField(), fieldError.getDefaultMessage()))
-                    .collect(Collectors.toList());
-            System.out.println(result);
-            return ResponseEntity.badRequest().body(new BaseResponse<>(result, "fail"));
+            return ResponseEntity.badRequest()
+                    .body(new BaseResponse<>(getFieldErrors(bindingResult), "fail"));
         }
         return ResponseEntity.ok(new BaseResponse<>(user));
+    }
+
+    @PostMapping("/member")
+    public ResponseEntity<BaseResponse<?>> memberCheck(@RequestBody @Valid Member member, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest()
+                    .body(new BaseResponse<>(getFieldErrors(bindingResult), "fail"));
+        }
+        return ResponseEntity.ok(new BaseResponse<>(member));
+    }
+
+    private List<String> getFieldErrors(BindingResult bindingResult) {
+        return bindingResult.getFieldErrors().stream()
+                .map(fieldError -> String.format("%s 오류. %s", fieldError.getField(), fieldError.getDefaultMessage()))
+                .collect(Collectors.toList());
     }
 
 }
