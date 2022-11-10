@@ -6,7 +6,6 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import xyz.applebox.java.model.ErrorResponse;
-import xyz.applebox.java.model.ErrorResponse.ErrorMessage;
 
 import javax.validation.ConstraintViolationException;
 import javax.validation.Path;

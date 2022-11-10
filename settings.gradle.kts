@@ -1,4 +1,5 @@
 rootProject.name = "java-playground"
 include("basic")
-include("aop")
-include("validation")
+include("spring-aop")
+include("spring-validation")
+include("spring-filter")
