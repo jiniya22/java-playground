@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/s_batch?characterEncoding=UTF-8&serverTimezone=UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: test
+      password: test
+      pool-name: pool_mysql_batch
+
+  batch:
+    jdbc:
+      initialize-schema: never
