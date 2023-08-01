@@ -1,0 +1,6 @@
+
+┌┐ ┌─┐┌┬┐┌─┐┬ ┬
+├┴┐├─┤ │ │  ├─┤
+└─┘┴ ┴ ┴ └─┘┴ ┴
+${Ansi.GREEN}:: Spring Boot ::         ${Ansi.NORMAL}${spring-boot.formatted-version}${Ansi.NORMAL}
+${application.title}${application.formatted-version}
