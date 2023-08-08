@@ -10,10 +10,13 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
+import org.springframework.batch.item.database.JpaCursorItemReader;
 import org.springframework.batch.item.database.builder.JdbcCursorItemReaderBuilder;
+import org.springframework.batch.item.database.builder.JpaCursorItemReaderBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,7 @@ public class ItemReaderConfig {
   private final JobBuilderFactory jobBuilderFactory;
   private final StepBuilderFactory stepBuilderFactory;
   private final DataSource dataSource;
+  private final EntityManagerFactory entityManagerFactory;
 
   @Bean
   public Job itemReaderJob() {
@@ -33,6 +37,7 @@ public class ItemReaderConfig {
             .incrementer(new RunIdIncrementer())
             .start(customReaderStep())
             .next(jdbcStep())
+            .next(jpaStep())
             .build();
   }
 
@@ -54,6 +59,15 @@ public class ItemReaderConfig {
             .build();
   }
 
+  @Bean
+  public Step jpaStep() {
+    return stepBuilderFactory.get("jpaStep")
+            .<Person, Person>chunk(10)
+            .reader(jpaCursorItemReader())
+            .writer(itemWriter())
+            .build();
+  }
+
   @SneakyThrows
   private JdbcCursorItemReader<Person> jdbcCursorItemReader() {
     JdbcCursorItemReader<Person> itemReader = new JdbcCursorItemReaderBuilder<Person>()
@@ -65,6 +79,17 @@ public class ItemReaderConfig {
             .build();
     itemReader.afterPropertiesSet();
     return itemReader;
+  }
+
+  @SneakyThrows
+  private JpaCursorItemReader<Person> jpaCursorItemReader() {
+    JpaCursorItemReader<Person> jpaCursorItemReader = new JpaCursorItemReaderBuilder<Person>()
+            .name("jpaCursorItemReader")
+            .entityManagerFactory(entityManagerFactory)
+            .queryString("select p from Person p")
+            .build();
+    jpaCursorItemReader.afterPropertiesSet();
+    return jpaCursorItemReader;
   }
 
   private ItemWriter<Person> itemWriter() {
