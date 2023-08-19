@@ -23,6 +23,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import xyz.applebox.batch.part3.listener.SavePersonAnnotationJobExecutionListener;
+import xyz.applebox.batch.part3.listener.SavePersonExecutionListener;
+import xyz.applebox.batch.part3.listener.SavePersonStepAnnotationExecutionListener;
+import xyz.applebox.batch.part3.listener.SavePersonStepExecutionListener;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -39,6 +43,8 @@ public class SavePersonConfig {
     return jobBuilderFactory.get("savePersonJob")
       .incrementer(new RunIdIncrementer())
       .start(savePersonStep(null))
+      .listener(new SavePersonExecutionListener())
+      .listener(new SavePersonAnnotationJobExecutionListener())
       .build();
   }
 
@@ -50,6 +56,8 @@ public class SavePersonConfig {
       .reader(savePersonItemReader())
       .processor(new DuplicateValidationProcessor<>(Person::getName, Boolean.parseBoolean(allowDuplicate)))
       .writer(itemWriter())
+      .listener(new SavePersonStepExecutionListener())
+      .listener(new SavePersonStepAnnotationExecutionListener())
       .build();
   }
 
