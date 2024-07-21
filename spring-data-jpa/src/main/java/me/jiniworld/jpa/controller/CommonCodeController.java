@@ -1,11 +1,8 @@
 package me.jiniworld.jpa.controller;
 
 import lombok.RequiredArgsConstructor;
-import me.jiniworld.jpa.domain.projection.UserSummary;
-import me.jiniworld.jpa.domain.projection.UsernameOnly;
-import me.jiniworld.jpa.persistence.CommonCode;
-import me.jiniworld.jpa.persistence.CommonCodeService;
-import me.jiniworld.jpa.persistence.UserService;
+import me.jiniworld.jpa.user.persistence.CommonCode;
+import me.jiniworld.jpa.user.persistence.CommonCodeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

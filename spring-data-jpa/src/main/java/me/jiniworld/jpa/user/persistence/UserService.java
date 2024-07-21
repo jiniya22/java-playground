@@ -1,8 +1,8 @@
-package me.jiniworld.jpa.persistence;
+package me.jiniworld.jpa.user.persistence;
 
 import lombok.RequiredArgsConstructor;
-import me.jiniworld.jpa.domain.projection.UserSummary;
-import me.jiniworld.jpa.domain.projection.UsernameOnly;
+import me.jiniworld.jpa.user.domain.projection.UserSummary;
+import me.jiniworld.jpa.user.domain.projection.UsernameOnly;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor

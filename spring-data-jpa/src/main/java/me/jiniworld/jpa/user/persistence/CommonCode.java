@@ -1,4 +1,4 @@
-package me.jiniworld.jpa.persistence;
+package me.jiniworld.jpa.user.persistence;
 
 import lombok.Data;
 import org.hibernate.annotations.Immutable;

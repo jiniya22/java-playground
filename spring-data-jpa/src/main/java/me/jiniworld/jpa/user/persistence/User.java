@@ -1,4 +1,4 @@
-package me.jiniworld.jpa.persistence;
+package me.jiniworld.jpa.user.persistence;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,4 +22,6 @@ class User {
     private Long id;
     private String username;
     private String email;
+    private Integer level;
+    private Integer active;
 }

@@ -1,4 +1,4 @@
-package me.jiniworld.jpa.domain.projection;
+package me.jiniworld.jpa.user.domain.projection;
 
 import org.springframework.beans.factory.annotation.Value;
 
