@@ -17,4 +17,8 @@ public class UserService {
     public UsernameOnly selectUsername(long id) {
         return userRepository.getById(id, UsernameOnly.class).orElse(null);
     }
+
+    public void test() {
+        userRepository.deleteBulkByActive(0);
+    }
 }
