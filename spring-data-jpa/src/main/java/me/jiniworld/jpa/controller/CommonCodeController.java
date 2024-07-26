@@ -14,7 +14,7 @@ class CommonCodeController {
     private final CommonCodeService commonCodeService;
 
     @GetMapping("/{id}")
-    public CommonCode get(@PathVariable("id") Long id) {
+    public Object get(@PathVariable("id") Long id) {
         return commonCodeService.select(id);
     }
 

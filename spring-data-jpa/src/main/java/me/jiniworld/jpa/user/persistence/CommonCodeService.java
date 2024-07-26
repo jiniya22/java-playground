@@ -11,7 +11,10 @@ public class CommonCodeService {
   private final CommonCodeRepository commonCodeRepository;
 
   public CommonCode select(Long id) {
-    return commonCodeRepository.findById(id).orElse(null);
+    CommonCode commonCode = commonCodeRepository.findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("Not found id: " + id));
+    System.out.println(commonCode);
+    return commonCode;
   }
 
   @Transactional

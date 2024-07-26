@@ -24,4 +24,15 @@ class User {
     private String email;
     private Integer level;
     private Integer active;
+
+    private Address homeAddress;
+
+    @Embedded // Not necessary...
+    @AttributeOverride(name = "street",
+        column = @Column(name = "BILLING_STREET")) // NULLable!
+    @AttributeOverride(name = "zipcode",
+        column = @Column(name = "BILLING_ZIPCODE", length = 5))
+    @AttributeOverride(name = "city",
+        column = @Column(name = "BILLING_CITY"))
+    private Address billingAddress;
 }
