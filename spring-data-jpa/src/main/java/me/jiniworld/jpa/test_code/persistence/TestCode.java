@@ -1,4 +1,4 @@
-package me.jiniworld.jpa.user.persistence;
+package me.jiniworld.jpa.test_code.persistence;
 
 import lombok.Getter;
 import lombok.Setter;

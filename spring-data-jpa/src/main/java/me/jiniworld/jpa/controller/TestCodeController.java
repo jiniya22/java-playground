@@ -2,11 +2,11 @@ package me.jiniworld.jpa.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.jiniworld.jpa.user.domain.TestCodeSimple;
-import me.jiniworld.jpa.user.persistence.CommonCodeService;
-import me.jiniworld.jpa.user.persistence.TestCode;
-import me.jiniworld.jpa.user.persistence.TestCodeService;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import me.jiniworld.jpa.test_code.persistence.TestCodeService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package me.jiniworld.jpa.user.persistence;
+package me.jiniworld.jpa.test_code.persistence;
 
 import lombok.RequiredArgsConstructor;
 import me.jiniworld.jpa.user.domain.TestCodeSimple;
